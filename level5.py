@@ -10,7 +10,7 @@ num_rounds = 0
 
 
 # creating a function to prompt user to input choice
-def get_user_choice():
+def get_player_choice():
     player_choice = input("Enter rock, paper, or scissors: ").lower()
      
     while player_choice not in approved_list:
@@ -21,7 +21,7 @@ def get_user_choice():
    
 
 # creating a function to compare the user's choice with the computer's choice and return "win", "loss", or "tie"
-def compare_choices(user_choice, computer_choice):
+def determine_winner (user_choice, computer_choice):
     if user_choice == computer_choice:
         return "tie"
     elif (user_choice == "rock" and computer_choice == "scissors") or \
@@ -49,11 +49,11 @@ choices = ["rock", "paper", "scissors"]
 
 # play the game
 while game_counter < num_rounds:
-    user_choice = get_user_choice()
+    user_choice = get_player_choice()
     computer_choice = random.choice(choices)
     print(f"Computer chose: {computer_choice}")
 
-    result = compare_choices(user_choice, computer_choice)
+    result = determine_winner (user_choice, computer_choice)
    
 
     #increment game counter
