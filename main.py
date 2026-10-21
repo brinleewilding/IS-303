@@ -17,7 +17,7 @@ print("Guess the five-letter word.")
 print("G = correct letter and position")
 print("Y = correct letter, wrong position")
 print("- = letter is not in the word")
-print("There are no words with repeated letters in this game.")
+print("There are no repeating letters in the secret word.")
 print("-----------------------------------")
 
 # main game loop that continues until the player chooses to stop playing
