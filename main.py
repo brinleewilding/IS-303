@@ -1,16 +1,63 @@
-# import random
-#Have AI give you a list of 50 words
-# pick words that don't repeat letters (sleep)
-#words = ["Drugs", "truck", "Seven", "broker", "Money"]
-#rand.int
-# choose_word() - this one selects and returns a secret word
-#player gets 6 attempts to gues the wrods
-# Require each guess to be only 5 letters
-# evaluate_guess()- this one checks if the letters are in the right place (compares)
-# compares the index of each letter in the guess with the secret word
-# if the solution[0] == to word[0], then the first letter is correct
-# if the solution[1] == to word[1], then the second letter is correct
-# if the solution[2] == to word[2], then the third letter is correct
-# if the solution[3] == to word[3], then the fourth letter is correct
-# if the solution[4] == to word[4], then the fifth letter is correct   
-# you can do one feedback
+# importing the functions from wordle_functions.py
+
+from wordle_functions import choose_word
+from wordle_functions import get_guess
+from wordle_functions import evaluate_guess
+from wordle_functions import display_guess
+from wordle_functions import has_won
+
+
+play_again = True
+
+# welcoming message and instructions for the game
+
+print("-----------------------------------")
+print("Welcome to Mystery Wordle!")
+print("Guess the five-letter word.")
+print("G = correct letter and position")
+print("Y = correct letter, wrong position")
+print("- = letter is not in the word")
+print("There are no words with repeated letters in this game.")
+print("-----------------------------------")
+
+# main game loop that continues until the player chooses to stop playing
+
+while play_again == True:
+    secret_word = choose_word()
+    passed_guesses = []
+    won = False
+    attempt = 1
+
+    # loop that allows the player to make up to 6 attempts to guess the secret word
+
+    while attempt <= 6 and not won:
+        print("Attempt " + str(attempt) + " of 6")
+        players_guess = get_guess(passed_guesses)
+        
+        passed_guesses.append(players_guess)
+
+
+        feedback = evaluate_guess(players_guess, secret_word)
+        display_guess(players_guess, feedback)
+
+        if has_won(players_guess, secret_word):
+            won = True
+
+        attempt = attempt + 1
+
+    # displaying the result of the game and asking the player if they want to play again   
+    if won:
+        print("Congrats you solved the puzzle")
+    else:
+        print(f"You lost, the secret word was: {secret_word}")
+
+    answer = input("Play again? (yes/no): ").lower()
+    if answer == "yes" or answer == "y":
+        pass
+    else:
+        play_again = False
+        print("Thanks for playing!")
+
+    
+        
+
